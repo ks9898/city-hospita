@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>City Care Hospital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --deep:#0d3b3f; --teal:#14766f; --mint:#dff2ec; --paper:#f7faf8;
+  --ink:#16292b; --muted:#566b6c; --alert:#e5483d; --line:#d3e3dd;
+  --serif:'Fraunces',Georgia,serif; --sans:'Figtree',system-ui,-apple-system,Segoe UI,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.65;font-size:17px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--alert);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+h1,h2,h3{font-family:var(--serif);line-height:1.2;color:var(--deep)}
+h2{font-size:clamp(1.7rem,4vw,2.3rem);margin-bottom:12px}
+section{padding:72px 0}
+.lead{color:var(--muted);max-width:60ch}
+
+/* Header */
+header{position:sticky;top:0;z-index:20;background:rgba(247,250,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:1.25rem;color:var(--deep);text-decoration:none}
+.logo i{width:34px;height:34px;border-radius:9px;background:var(--teal);position:relative;display:block}
+.logo i::before,.logo i::after{content:"";position:absolute;background:#fff;border-radius:2px}
+.logo i::before{width:16px;height:4px;top:15px;left:9px}
+.logo i::after{width:4px;height:16px;top:9px;left:15px}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+nav a{text-decoration:none;font-weight:500;font-size:.95rem;padding:7px 13px;border-radius:99px;color:var(--ink);transition:background .2s}
+nav a:hover{background:var(--mint)}
+
+/* Hero */
+.hero{background:var(--deep);color:#e8f4f0;padding:84px 0 0;position:relative;overflow:hidden}
+.hero h1{color:#fff;font-size:clamp(2.3rem,7vw,4.2rem);max-width:15ch;margin-bottom:18px}
+.hero p{max-width:50ch;color:#bcd7d1;font-size:1.1rem;margin-bottom:30px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;font-weight:600;padding:13px 24px;border-radius:10px;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.main{background:#fff;color:var(--deep)}
+.btn.alt{border:1.5px solid #5f9d96;color:#fff}
+.pulse{display:block;width:100%;height:90px;margin-top:46px}
+.pulse path{fill:none;stroke:#4fc3b5;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 3.2s ease-out forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.pulse path{animation:none;stroke-dashoffset:0}html{scroll-behavior:auto}}
+
+/* Stats */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;margin-top:-1px;background:var(--mint);border-bottom:1px solid var(--line)}
+.facts div{padding:22px;text-align:center;border-right:1px solid var(--line)}
+.facts div:last-child{border-right:0}
+.facts b{display:block;font-family:var(--serif);font-size:1.7rem;color:var(--teal)}
+.facts span{font-size:.9rem;color:var(--muted)}
+
+/* About */
+.about{display:grid;grid-template-columns:1.1fr 1fr;gap:44px;align-items:center}
+.about ul{list-style:none;display:grid;gap:12px}
+.about li{padding:14px 18px;background:#fff;border-left:4px solid var(--teal);border-radius:0 10px 10px 0;box-shadow:0 1px 0 var(--line)}
+.about li b{display:block;color:var(--deep)}
+
+/* Departments */
+.depts{background:#fff;border-block:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-top:30px}
+.dept{padding:24px 20px;border:1px solid var(--line);border-radius:14px;background:var(--paper);transition:background .2s,border-color .2s}
+.dept:hover{background:var(--mint);border-color:var(--teal)}
+.dept svg{width:34px;height:34px;stroke:var(--teal);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-bottom:12px}
+.dept h3{font-size:1.15rem;margin-bottom:4px}
+.dept p{font-size:.92rem;color:var(--muted);line-height:1.5}
+
+/* Doctors */
+.docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:30px}
+.doc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;text-align:center}
+.avatar{width:76px;height:76px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:1.5rem;color:#fff;background:var(--teal)}
+.doc:nth-child(2) .avatar{background:#2c5e8a}
+.doc:nth-child(3) .avatar{background:#8a5a2c}
+.doc:nth-child(4) .avatar{background:#6b4a8a}
+.doc h3{font-size:1.1rem}
+.doc small{color:var(--muted)}
+
+/* Services */
+.services{background:var(--deep);color:#d4e8e3}
+.services h2{color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chips span{padding:10px 18px;border:1px solid #3d7a74;border-radius:99px;font-weight:500}
+
+/* Emergency */
+.sos{background:var(--alert);color:#fff;padding:54px 0}
+.sos .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.sos h2{color:#fff;margin-bottom:4px}
+.sos a{font-family:var(--serif);font-weight:700;font-size:clamp(1.9rem,6vw,3rem);text-decoration:none;background:#fff;color:var(--alert);padding:10px 26px;border-radius:14px}
+
+/* Contact */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+form{display:grid;gap:14px}
+label{font-weight:600;font-size:.92rem}
+input,textarea{width:100%;font:inherit;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:#fff;margin-top:5px}
+input:focus,textarea:focus{border-color:var(--teal);outline:none;box-shadow:0 0 0 3px var(--mint)}
+form button{font:inherit;font-weight:600;border:0;cursor:pointer;background:var(--teal);color:#fff;padding:13px;border-radius:10px}
+form button:hover{background:var(--deep)}
+.info p{margin-bottom:10px}
+
+footer{background:#082a2d;color:#9ec0ba;text-align:center;padding:26px 0;font-size:.92rem}
+
+@media (max-width:760px){
+  section{padding:54px 0}
+  .about,.contact{grid-template-columns:1fr}
+  .facts div{border-right:0;border-bottom:1px solid var(--line)}
+  nav{width:100%}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#home"><i></i>City Care Hospital</a>
+    <nav aria-label="Main">
+      <a href="#home">Home</a>
+      <a href="#about">About Hospital</a>
+      <a href="#doctors">Doctors</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="wrap">
+    <h1>Modern care, close to home.</h1>
+    <p>City Care Hospital provides modern healthcare facilities with experienced doctors and trained medical staff.</p>
+    <div class="btns">
+      <a class="btn main" href="#contact">Book an appointment</a>
+      <a class="btn alt" href="#departments">See our departments</a>
+    </div>
+  </div>
+  <svg class="pulse" viewBox="0 0 1200 90" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 50 H330 L360 50 L380 15 L410 80 L435 5 L460 50 H700 L725 50 L745 25 L770 70 L790 50 H1200"/>
+  </svg>
+</section>
+
+<div class="facts">
+  <div><b>24/7</b><span>Emergency services</span></div>
+  <div><b>5</b><span>Medical departments</span></div>
+  <div><b>Expert</b><span>Doctors and nurses</span></div>
+  <div><b>Modern</b><span>Facilities</span></div>
+</div>
+
+<section id="about">
+  <div class="wrap about">
+    <div>
+      <h2>About our hospital</h2>
+      <p class="lead">We combine up-to-date medical equipment with a caring team, so every patient is treated with skill and respect, from a routine check-up to urgent care.</p>
+    </div>
+    <ul>
+      <li><b>Experienced doctors</b>Specialists across every department.</li>
+      <li><b>Trained medical staff</b>Nurses and technicians who put patients first.</li>
+      <li><b>Open round the clock</b>Emergency care any hour, any day.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="depts" id="departments">
+  <div class="wrap">
+    <h2>Our departments</h2>
+    <p class="lead">Find the right specialist for your needs.</p>
+    <div class="grid">
+      <div class="dept">
+        <svg viewBox="0 0 24 24"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.800-8 11-8 11z"/></svg>
+        <h3>Cardiology</h3><p>Heart and blood vessel care.</p>
+      </div>
+      <div class="dept">
+        <svg viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 6 1V4a3 3 0 0 0-3 0zM15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-6 1"/></svg>
+        <h3>Neurology</h3><p>Brain, spine and nerves.</p>
+      </div>
+      <div class="dept">
+        <svg viewBox="0 0 24 24"><path d="M5 5l3-2 2 3-3 2zM16 16l3-2 2 3-3 2zM8 8l8 8M7 12l-3 3 5 5 3-3"/></svg>
+        <h3>Orthopedics</h3><p>Bones, joints and muscles.</p>
+      </div>
+      <div class="dept">
+        <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/></svg>
+        <h3>General Medicine</h3><p>Everyday illness and check-ups.</p>
+      </div>
+      <div class="dept">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg>
+        <h3>Pediatrics</h3><p>Gentle care for children.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="doctors">
+  <div class="wrap">
+    <h2>Meet our doctors</h2>
+    <p class="lead">Sample profiles. Replace the names with your own.</p>
+    <div class="docs">
+      <div class="doc"><div class="avatar">AS</div><h3>Dr. A. Sharma</h3><small>Cardiologist</small></div>
+      <div class="doc"><div class="avatar">RM</div><h3>Dr. R. Mehta</h3><small>Neurologist</small></div>
+      <div class="doc"><div class="avatar">KV</div><h3>Dr. K. Verma</h3><small>Orthopedic Surgeon</small></div>
+      <div class="doc"><div class="avatar">PN</div><h3>Dr. P. Nair</h3><small>Pediatrician</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <h2>Services</h2>
+    <p class="lead" style="color:#b5d3cd">Care that covers you from first visit to recovery.</p>
+    <div class="chips">
+      <span>Emergency care</span><span>Outpatient consultation</span><span>Laboratory tests</span>
+      <span>Pharmacy</span><span>Radiology and imaging</span><span>Ambulance</span>
+    </div>
+  </div>
+</section>
+
+<aside class="sos" aria-label="Emergency">
+  <div class="wrap">
+    <div>
+      <h2>Emergency services</h2>
+      <p>Available 24 hours a day, 7 days a week.</p>
+    </div>
+    <a href="tel:9876543210" aria-label="Call emergency contact 9876543210">9876543210</a>
+  </div>
+</aside>
+
+<section id="contact">
+  <div class="wrap contact">
+    <div class="info">
+      <h2>Contact us</h2>
+      <p class="lead">Send us a message and we will get back to you.</p>
+      <p><b>Emergency contact:</b> 9876543210</p>
+      <p><b>Hours:</b> Emergency open 24/7</p>
+    </div>
+    <form onsubmit="event.preventDefault();this.querySelector('button').textContent='Message sent';">
+      <label>Your name<input type="text" required></label>
+      <label>Phone number<input type="tel" required></label>
+      <label>Message<textarea rows="4" required></textarea></label>
+      <button type="submit">Send message</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>&copy; 2026 City Care Hospital</footer>
+
+</body>
+</html>
